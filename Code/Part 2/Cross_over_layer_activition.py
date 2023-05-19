@@ -14,22 +14,21 @@ def crossover_layer_activation(parent1_layer, parent2_layer, parent1_active, par
         value = parent1_active.pop()
         parent2_active.append(value)
 
-    elif parent1_len == parent2_len :
+    elif parent1_len == parent2_len:
         parent1_layer[-1], parent2_layer[-1] = parent2_layer[-1], parent1_layer[-1]
         parent1_active[-1], parent2_active[-1] = parent2_active[-1], parent1_active[-1]
 
     else:
-        for i in range(int(abs(parent1_len-parent2_len)/2)):
-            if parent2_len >parent1_len:
-                value = parent2_layer.pop()
-                parent1_layer.append(value)
-                value = parent2_active.pop()
-                parent1_active.append(value)
-            else:
-                value = parent1_layer.pop()
-                parent2_layer.append(value)
-                value = parent1_active.pop()
-                parent2_active.append(value)
+        if parent2_len >parent1_len:
+            value = parent2_layer.pop()
+            parent1_layer.append(value)
+            value = parent2_active.pop()
+            parent1_active.append(value)
+        else:
+            value = parent1_layer.pop()
+            parent2_layer.append(value)
+            value = parent1_active.pop()
+            parent2_active.append(value)
     
     
     return parent1_layer, parent2_layer, parent1_active, parent2_active
